@@ -16,6 +16,7 @@
         <module>svc-department</module>
         <module>svc-organization</module>
         <module>discovery</module>
+        <module>config</module>
     </modules>
 
 

@@ -1,0 +1,17 @@
+server:
+  port: 9088
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://${user.home}/application-config
+
+eureka:
+  client:
+    region: default
+    service-url:
+      defaultZone: http://localhost:9001/eureka

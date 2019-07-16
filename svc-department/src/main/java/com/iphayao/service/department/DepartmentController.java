@@ -17,7 +17,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/{id}")
-    public Department findDepartmentById(@PathVariable Long id) {
+    public Department findDepartmentById(@PathVariable String id) {
         return departmentService.findDepartmentById(id);
     }
 
@@ -26,8 +26,23 @@ public class DepartmentController {
         return departmentService.addNewDepartment(department);
     }
 
+    @PutMapping("/{id}")
+    public Department putDepartment(@PathVariable String id, @RequestBody Department department) {
+        return departmentService.updateDepartment(id, department);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteDepartment(@PathVariable String id) {
+        departmentService.deleteDepartment(id);
+    }
+
     @GetMapping("/organization/{organizationId}")
-    public List<Department> findDepartmentByOrganizationId(@PathVariable Long organizationId) {
-        return departmentService.findDepartmentOrganizationId(organizationId);
+    public List<Department> findDepartmentByOrganizationId(@PathVariable String organizationId) {
+        return departmentService.findDepartmentByOrganizationId(organizationId);
+    }
+
+    @GetMapping("/organization/{organizationId}/with-employee")
+    public List<Department> findDepartmentWithEmployee(@PathVariable String organizationId) {
+        return departmentService.findDepartmentByOrganizIdWithEmployee(organizationId);
     }
 }

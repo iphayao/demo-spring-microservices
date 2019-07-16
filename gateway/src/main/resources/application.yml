@@ -6,18 +6,16 @@ spring:
     name: gateway-proxy
 
 zuul:
+  prefix: /api
   ignoredServices: '*'
   routes:
     employee-service:
-      prefix: /api
       path: /employees/**
       stripPrefix: false
     department-service:
-      prefix: /api
       path: /departments/**
       stripPrefix: false
     organization-service:
-      prefix: /api
       path: /organization/**
       stripPrefix: false
 

@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface EmployeeRepository extends MongoRepository<Employee, Long> {
-    List<Employee> findByOrganizationId(Long organizationId);
-    List<Employee> findByDepartmentId(Long departmentId);
+public interface EmployeeRepository extends MongoRepository<Employee, String> {
+    List<Employee> findByOrganizationId(String organizationId);
+    List<Employee> findByDepartmentId(String departmentId);
 }

@@ -11,7 +11,7 @@
 <groupId>com.iphayao</groupId>
 <artifactId>svc-department</artifactId>
 <version>0.0.1-SNAPSHOT</version>
-<name>svc-employee</name>
+<name>svc-department</name>
 <description>Department Service</description>
 
 <properties>
@@ -35,6 +35,10 @@
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
 
     <dependency>

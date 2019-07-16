@@ -1,2 +1,11 @@
 server:
   port: 8081
+
+spring:
+  application:
+    name: employee-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka

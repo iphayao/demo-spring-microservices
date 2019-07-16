@@ -8,10 +8,14 @@
     <artifactId>demo-spring-microservices</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <name>demo-spring-microservices</name>
+    <description>Demo of Microservices with Spring Boot + Spring Cloud</description>
+
     <modules>
         <module>svc-employee</module>
         <module>svc-department</module>
         <module>svc-organization</module>
+        <module>discovery</module>
     </modules>
 
 

@@ -41,8 +41,4 @@ public class DepartmentController {
         return departmentService.findDepartmentByOrganizationId(organizationId);
     }
 
-    @GetMapping("/organization/{organizationId}/with-employee")
-    public List<Department> findDepartmentWithEmployee(@PathVariable String organizationId) {
-        return departmentService.findDepartmentByOrganizIdWithEmployee(organizationId);
-    }
 }

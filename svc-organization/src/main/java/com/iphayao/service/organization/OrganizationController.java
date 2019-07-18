@@ -37,19 +37,4 @@ public class OrganizationController {
         organizationService.deleteOrganization(id);
     }
 
-    @GetMapping("/{id}/with-employees")
-    public Organization findOrganizationByIdWithEmployees(@PathVariable String id) {
-        return organizationService.findOrganizationByIdWithEmployees(id);
-    }
-
-    @GetMapping("/{id}/with-departments")
-    public Organization findOrganizationByIdWithDepartment(@PathVariable String id) {
-        return organizationService.findOrganizationByIdWithDepartments(id);
-    }
-
-    @GetMapping("/{id}/with-departments-and-employees")
-    public Organization findOrganizationByIdWithDepartmentsAndEmployees(@PathVariable String id) {
-        return organizationService.findOrganizationByIdWithDepartmentsAndEmployees(id);
-    }
-
 }

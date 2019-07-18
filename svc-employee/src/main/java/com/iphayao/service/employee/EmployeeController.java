@@ -17,7 +17,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public Employee findEmployeeById(@PathVariable String id) {
+    public Employee findEmployee(@PathVariable String id) {
         return employeeService.findEmployeeById(id);
     }
 
@@ -45,5 +45,4 @@ public class EmployeeController {
     public List<Employee> findEmployeeByOrganizationId(@PathVariable String organizationId) {
         return employeeService.findEmployeeByOrganizationId(organizationId);
     }
-
 }

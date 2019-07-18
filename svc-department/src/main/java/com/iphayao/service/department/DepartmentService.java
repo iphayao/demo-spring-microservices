@@ -2,10 +2,12 @@ package com.iphayao.service.department;
 
 import com.iphayao.service.employee.Employee;
 import com.iphayao.service.employee.EmployeeClient;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepartmentService {
@@ -19,7 +21,18 @@ public class DepartmentService {
         return departmentRepository.findAll();
     }
 
+    @HystrixCommand(fallbackMethod = "findDepartmentByIdRecovery")
     public Department findDepartmentById(String id) {
+        Optional<Department> department = departmentRepository.findById(id);
+        department.ifPresent(d -> {
+            List<Employee> employees = employeeClient.findEmployeeByDepartmentId(d.getId());
+            d.setEmployees(employees);
+        });
+
+        return department.orElse(null);
+    }
+
+    public Department findDepartmentByIdRecovery(String id) {
         return departmentRepository.findById(id).orElse(null);
     }
 
@@ -40,13 +53,4 @@ public class DepartmentService {
         return departmentRepository.findByOrganizationId(organizationId);
     }
 
-    public List<Department> findDepartmentByOrganizIdWithEmployee(String departmentId) {
-        List<Department> departments = departmentRepository.findByOrganizationId(departmentId);
-        departments.forEach(department -> {
-            List<Employee> employees = employeeClient.findEmployeeByDepartment(department.getId());
-            department.setEmployees(employees);
-        });
-
-        return departments;
-    }
 }

@@ -12,7 +12,4 @@ public interface DepartmentClient {
     @GetMapping("/departments/organization/{organizationId}")
     List<Department> findDepartmentByOrganizationId(@PathVariable String organizationId);
 
-    @GetMapping("/departments/organization/{organizationId}/with-employee")
-    List<Department> findDepartmentByOrganizationIdWithEmployee(@PathVariable String organizationId);
-
 }

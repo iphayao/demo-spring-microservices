@@ -10,6 +10,6 @@ import java.util.List;
 public interface EmployeeClient {
 
     @GetMapping("/employees/department/{departmentId}")
-    List<Employee> findEmployeeByDepartment(@PathVariable String departmentId);
+    List<Employee> findEmployeeByDepartmentId(@PathVariable String departmentId);
 
 }

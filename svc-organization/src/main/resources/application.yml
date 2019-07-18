@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: organization-service
+  sleuth:
+    sampler:
+      probability: 1.0
 
 eureka:
   client:

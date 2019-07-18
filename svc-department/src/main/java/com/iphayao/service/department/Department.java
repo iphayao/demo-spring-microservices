@@ -9,7 +9,6 @@ import java.util.List;
 
 @Data
 @Document
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Department {
     private String id;

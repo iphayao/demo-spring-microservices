@@ -1,9 +1,7 @@
 package com.iphayao.service.organization;
 
-import com.iphayao.service.department.Department;
 import com.iphayao.service.department.DepartmentClient;
 import com.iphayao.service.employee.EmployeeClient;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +24,13 @@ public class OrganizationService {
     }
 
     public Organization findOrganizationById(String id) {
-        return organizationRepository.findById(id).orElse(null);
+        Optional<Organization> organization = organizationRepository.findById(id);
+        organization.ifPresent(o -> {
+            o.setEmployees(employeeClient.findEmployeeByOrganizationId(o.getId()));
+            o.setDepartments(departmentClient.findDepartmentByOrganizationId(o.getId()));
+        });
+
+        return organization.orElse(null);
     }
 
     public Organization addNewOrganization(Organization organization) {
@@ -40,27 +44,6 @@ public class OrganizationService {
 
     public void deleteOrganization(String id) {
         organizationRepository.deleteById(id);
-    }
-
-    public Organization findOrganizationByIdWithEmployees(String id) {
-        Optional<Organization> org = organizationRepository.findById(id);
-        org.ifPresent(o -> o.setEmployees(employeeClient.findEmployeeByOrganization(o.getId())));
-        return org.orElse(null);
-    }
-
-    public Organization findOrganizationByIdWithDepartments(String id) {
-        Optional<Organization> org = organizationRepository.findById(id);
-        org.ifPresent(o -> o.setDepartments(departmentClient.findDepartmentByOrganizationIdWithEmployee(id)));
-        return org.orElse(null);
-    }
-
-    public Organization findOrganizationByIdWithDepartmentsAndEmployees(String id) {
-        Optional<Organization> org = organizationRepository.findById(id);
-        org.ifPresent(o -> {
-            o.setDepartments(departmentClient.findDepartmentByOrganizationId(o.getId()));
-            o.setEmployees(employeeClient.findEmployeeByOrganization(o.getId()));
-        });
-        return org.orElse(null);
     }
 
 }

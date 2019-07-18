@@ -1,10 +1,12 @@
 package com.iphayao.service.employee;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
@@ -13,6 +15,7 @@ public class EmployeeController {
 
     @GetMapping
     public List<Employee> findAllEmployee() {
+        log.info("EMPLOYEE WAS CALLED");
         return employeeService.findAllEmployee();
     }
 
@@ -38,6 +41,7 @@ public class EmployeeController {
 
     @GetMapping("/department/{departmentId}")
     public List<Employee> findEmployeeByDepartmentId(@PathVariable String departmentId) {
+        log.info("EMPLOYEE WAS CALLED");
         return employeeService.findEmployeeByDepartmentId(departmentId);
     }
 
